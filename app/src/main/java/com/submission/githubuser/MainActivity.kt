@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLayout() {
+        supportActionBar?.title = "Homepage"
         recycleView.layoutManager = LinearLayoutManager(this)
         val dataAdapter = CardviewUserAdapter(fetchUser())
         recycleView.adapter = dataAdapter
