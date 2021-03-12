@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="8dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_profile_thumbnail"
+            android:layout_width="250px"
+            android:layout_height="250px"/>
+
+        <TextView
+            android:id="@+id/text_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_toEndOf="@+id/image_profile_thumbnail"
+            android:layout_toRightOf="@+id/image_profile_thumbnail"
+            android:textStyle="bold"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/text_workplace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_below="@+id/text_username"
+            android:layout_toEndOf="@+id/image_profile_thumbnail"
+            android:layout_toRightOf="@+id/image_profile_thumbnail"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/followers_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_toEndOf="@+id/image_profile_thumbnail"
+            android:layout_below="@id/text_workplace"
+            android:textSize="15sp"
+            />
+
+        <ImageView
+            android:id="@+id/followers_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/followers_count"
+            android:layout_below="@id/text_workplace"
+            />
+
+        <TextView
+            android:id="@+id/repository_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="4dp"
+            android:layout_toEndOf="@+id/followers_icon"
+            android:layout_below="@id/text_workplace"
+            android:textSize="15sp"
+            />
+
+        <ImageView
+            android:id="@+id/repository_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/repository_count"
+            android:layout_below="@id/text_workplace"
+            />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
