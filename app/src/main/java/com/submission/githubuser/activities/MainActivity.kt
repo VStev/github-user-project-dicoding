@@ -1,4 +1,4 @@
-package com.submission.githubuser
+package com.submission.githubuser.activities
 
 import android.content.Intent
 import android.content.res.TypedArray
@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.submission.githubuser.R
+import com.submission.githubuser.user.CardviewUserAdapter
+import com.submission.githubuser.user.UserData
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recycleView: RecyclerView
@@ -38,7 +41,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLayout() {
-        supportActionBar?.title = "Homepage"
+        supportActionBar?.title = R.string.homepage_header.toString()
         recycleView.layoutManager = LinearLayoutManager(this)
         val dataAdapter = CardviewUserAdapter(fetchUser())
         recycleView.adapter = dataAdapter

@@ -1,10 +1,11 @@
-package com.submission.githubuser
+package com.submission.githubuser.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.submission.githubuser.databinding.ActivityUserDetailBinding
+import com.submission.githubuser.user.UserData
 
 class UserDetailActivity : AppCompatActivity() {
 
@@ -19,7 +20,7 @@ class UserDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         viewbind = ActivityUserDetailBinding.inflate(layoutInflater)
         setContentView(viewbind.root)
-        userDetails = intent.getParcelableExtra(EXTRA_USER)!!
+        userDetails = intent.getParcelableExtra<UserData>(EXTRA_USER) as UserData
         showLayout()
     }
 

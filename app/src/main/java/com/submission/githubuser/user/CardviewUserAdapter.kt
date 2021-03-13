@@ -1,4 +1,4 @@
-package com.submission.githubuser
+package com.submission.githubuser.user
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.submission.githubuser.R
 
 class CardviewUserAdapter(private val userList: ArrayList<UserData>) : RecyclerView.Adapter<CardviewUserAdapter.UserDataHolder>() {
 
