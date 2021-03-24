@@ -1,16 +1,13 @@
 package com.submission.githubuser.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
+import androidx.appcompat.app.AppCompatActivity
 import com.submission.githubuser.databinding.ActivityUserDetailBinding
-import com.submission.githubuser.user.UserData
 
 class UserDetailActivity : AppCompatActivity() {
 
     private lateinit var viewbind: ActivityUserDetailBinding
-    private lateinit var userDetails: UserData
+    private lateinit var userID: String
 
     companion object {
         const val EXTRA_USER = "extra user"
@@ -20,26 +17,15 @@ class UserDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         viewbind = ActivityUserDetailBinding.inflate(layoutInflater)
         setContentView(viewbind.root)
-        userDetails = intent.getParcelableExtra<UserData>(EXTRA_USER) as UserData
+        userID = intent.getStringExtra(EXTRA_USER).toString()
         showLayout()
     }
 
     private fun showLayout(){
-        val followingText =  "${userDetails.followingCount}\nfollowing"
-        val followerText = "${userDetails.followersCount}\nfollowers"
-        val repositoryText = "${userDetails.repositoryCount}\nrepositories"
-        val locationText = "Currently at ${userDetails.location}"
-        val companytext = "Works at ${userDetails.company}"
-        supportActionBar?.title = "@g${userDetails.username}"
-        Glide.with(this)
-            .load(userDetails.avatar)
-            .apply(RequestOptions().override(600,600))
-            .into(viewbind.imageProfile)
-        viewbind.textRealname.text = userDetails.name
-        viewbind.textLocation.text = locationText
-        viewbind.textWorkplace.text = companytext
-        viewbind.textFollower.text = followerText
-        viewbind.textFollowing.text = followingText
-        viewbind.textRepository.text = repositoryText
+        TODO("IMPLEMENT THE VIEW+RETROFITINTERACTABLE BUT WITH USER INTERFACE CALL HERE")
+    }
+
+    private fun getUserData(){
+        TODO("HONESTLY I DONT KNOW IF THIS WILL BE USED OR NOT")
     }
 }

@@ -12,5 +12,6 @@ data class UserData (
     var company: String? = "",
     var followersCount: String? = "",
     var followingCount: String? = "",
-    var avatar: Int? = 0
+    var avatar: Int? = 0,
+    var avatarUrl: String? = ""
     ) : Parcelable
