@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.submission.githubuser.R
@@ -22,8 +21,8 @@ import retrofit2.Response
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private var binding: FragmentHomeBinding? = null
+    private val viewBind get() = binding!!
     private lateinit var recycleView: RecyclerView
     private val retrofit = RetrofitInteractable()
 
@@ -32,14 +31,15 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val view = binding.root
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val view = viewBind.root
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recycleView = view.findViewById(R.id.user_list)
+        showLoading(true)
         showLayout(view)
     }
 
@@ -53,6 +53,7 @@ class HomeFragment : Fragment() {
                 if (response.code() == 200){
                     dataAdapter.setData(response.body() as ArrayList<SimpleUserData>)
                     dataAdapter.notifyDataSetChanged()
+                    showLoading(false)
                 }
             }
 
@@ -71,9 +72,17 @@ class HomeFragment : Fragment() {
         })
     }
 
+    private fun showLoading(state: Boolean) {
+        if (state) {
+            viewBind.progressBar.visibility = View.VISIBLE
+        } else {
+            viewBind.progressBar.visibility = View.GONE
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        _binding = null
+        binding = null
     }
 
 }

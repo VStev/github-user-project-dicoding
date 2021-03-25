@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.submission.githubuser.R
 import com.submission.githubuser.activities.UserDetailActivity
 import com.submission.githubuser.activities.UserDetailActivity.Companion.EXTRA_USER
+import com.submission.githubuser.databinding.FragmentFollowerBinding
+import com.submission.githubuser.databinding.FragmentHomeBinding
 import com.submission.githubuser.user.CardViewUserAdapter
 import com.submission.githubuser.user.SimpleUserData
 import com.submission.githubuser.webapi.RetrofitInteractable
@@ -23,12 +25,20 @@ class FollowerFragment : Fragment() {
 
     private lateinit var recycleView: RecyclerView
     private val retrofit = RetrofitInteractable()
+    private var binding: FragmentFollowerBinding? = null
+    private val viewBind  get() = binding!!
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = FragmentFollowerBinding.inflate(inflater, container, false)
+        val view = viewBind.root
+        return view
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recycleView = view.findViewById(R.id.user_list)
+        showLoading(true)
         showLayout()
-        TODO("IMPLEMENT CALL ARGUMENTS BETWEEN FOLLOWING AND FOLLOWER")
     }
 
     private fun showLayout() {
@@ -44,6 +54,7 @@ class FollowerFragment : Fragment() {
                 if (response.code() == 200){
                     dataAdapter.setData(response.body() as ArrayList<SimpleUserData>)
                     dataAdapter.notifyDataSetChanged()
+                    showLoading(false)
                 }
             }
 
@@ -59,8 +70,11 @@ class FollowerFragment : Fragment() {
         })
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_follower, container, false)
+    private fun showLoading(state: Boolean) {
+        if (state) {
+            viewBind.progressBar.visibility = View.VISIBLE
+        } else {
+            viewBind.progressBar.visibility = View.GONE
+        }
     }
 }

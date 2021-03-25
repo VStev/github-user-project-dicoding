@@ -1,6 +1,7 @@
 package com.submission.githubuser.activities
 
 import android.os.Bundle
+import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -34,6 +35,7 @@ class UserDetailActivity : AppCompatActivity() {
         viewbind = ActivityUserDetailBinding.inflate(layoutInflater)
         setContentView(viewbind.root)
         supportActionBar?.elevation = 0f
+        showLoading(true)
         showLayout()
     }
 
@@ -56,6 +58,7 @@ class UserDetailActivity : AppCompatActivity() {
                     viewbind.company.text = userData.company
                     viewbind.repository.text = text
                     supportActionBar?.title = userData.username
+                    showLoading(false)
                 }
             }
 
@@ -71,6 +74,14 @@ class UserDetailActivity : AppCompatActivity() {
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
+    }
+
+    private fun showLoading(state: Boolean) {
+        if (state) {
+            viewbind.progressBar.visibility = View.VISIBLE
+        } else {
+            viewbind.progressBar.visibility = View.GONE
+        }
     }
 
     private fun getUserData(){
