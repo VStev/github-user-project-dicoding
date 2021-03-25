@@ -1,17 +1,22 @@
 package com.submission.githubuser.user
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import com.google.gson.annotations.SerializedName
 
-@Parcelize
 data class UserData (
+    @SerializedName ("login")
     var username: String? = "",
+    @SerializedName("name")
     var name: String? = "",
+    @SerializedName("location")
     var location: String? = "",
+    @SerializedName("public_repos")
     var repositoryCount: String? = "",
+    @SerializedName("company")
     var company: String? = "",
+    @SerializedName("followers")
     var followersCount: String? = "",
+    @SerializedName("following")
     var followingCount: String? = "",
-    var avatar: Int? = 0,
+    @SerializedName("avatar_url")
     var avatarUrl: String? = ""
-    ) : Parcelable
+    )

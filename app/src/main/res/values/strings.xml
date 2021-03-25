@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">GitHubUser</string>
     <string name="homepage_header">Homepage</string>
-
+    <string name="follower_tab_header">Follower</string>
+    <string name="following_tab_header">Following</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tooltip_username">Tooltip Username</string>
+    <string name="tooltip_picture">profile picture</string>
+    <string name="tooltip_realname">Tooltip Realname</string>
+    <string name="tooltip_company">Tooltip Company</string>
+    <string name="tooltip_repository">Repository Count</string>
 </resources>

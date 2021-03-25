@@ -20,6 +20,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
+            <nav-graph android:value="@navigation/main_navigation" />
         </activity>
     </application>
 
