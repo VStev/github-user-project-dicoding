@@ -8,7 +8,7 @@ import retrofit2.http.Path
 
 interface RetrofitInterface {
     @GET("/users")
-    fun fetchUsers(): Call<List<SimpleUserData>>
+    fun fetchUsers(): Call<ArrayList<SimpleUserData>>
 
     @GET("/users/{user}")
     fun fetchProfile(@Path("user") username: String): Call<UserData>
