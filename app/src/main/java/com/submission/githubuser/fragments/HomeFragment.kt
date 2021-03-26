@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
         showLayout(view)
     }
 
-    private fun showLayout(view: View) { //MAKE THIS AS VIEWMODEL LATER
+    private fun showLayout(view: View) {
         val dataAdapter = CardViewUserAdapter()
         mainViewModel.fetchUser()
         recycleView.layoutManager = LinearLayoutManager(view.context)

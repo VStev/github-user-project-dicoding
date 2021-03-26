@@ -31,7 +31,28 @@ class MainViewModel : ViewModel() {
         })
     }
 
+    fun fetchFollows(argument: Int?, username: String?){
+        val fetch = retrofit.fetchUserFromGitHub()
+        val service = fetch.create(RetrofitInterface::class.java)
+        val call = if (argument == 0) username?.let { service.fetchUserFollowers(it) } else username?.let { service.fetchUsersFollowing(it) }
+        //CALLS GET -> api.github.com/users/{username}/following or api.github.com/users/{username}/followers depends on argument
+        call?.enqueue(object: Callback<ArrayList<SimpleUserData>> {
+            override fun onResponse(call: Call<ArrayList<SimpleUserData>>, response: Response<ArrayList<SimpleUserData>>) {
+                if (response.code() == 200){
+                    listUsers.value = response.body()
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<SimpleUserData>>?, t: Throwable?) {
+            }
+        })
+    }
+
     fun getUsers(): LiveData<ArrayList<SimpleUserData>> {
+        return listUsers
+    }
+
+    fun getFollows(): LiveData<ArrayList<SimpleUserData>>{
         return listUsers
     }
 

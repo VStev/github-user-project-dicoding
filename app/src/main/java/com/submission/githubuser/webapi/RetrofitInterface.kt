@@ -14,8 +14,8 @@ interface RetrofitInterface {
     fun fetchProfile(@Path("user") username: String): Call<UserData>
 
     @GET("/users/{user}/followers")
-    fun fetchUserFollowers(@Path("user") username: String): Call<List<SimpleUserData>>
+    fun fetchUserFollowers(@Path("user") username: String): Call<ArrayList<SimpleUserData>>
 
     @GET("/users/{user}/following")
-    fun fetchUsersFollowing(@Path("user") username: String): Call<List<SimpleUserData>>
+    fun fetchUsersFollowing(@Path("user") username: String): Call<ArrayList<SimpleUserData>>
 }
