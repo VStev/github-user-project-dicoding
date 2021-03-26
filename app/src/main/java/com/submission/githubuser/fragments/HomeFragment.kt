@@ -16,16 +16,12 @@ import com.submission.githubuser.user.CardViewUserAdapter
 import com.submission.githubuser.viewmodelproviders.MainViewModel
 
 class HomeFragment : Fragment() {
-
     private var binding: FragmentHomeBinding? = null
     private val viewBind get() = binding!!
     private lateinit var recycleView: RecyclerView
     private lateinit var mainViewModel: MainViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return viewBind.root

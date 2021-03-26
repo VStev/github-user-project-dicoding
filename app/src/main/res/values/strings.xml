@@ -9,4 +9,6 @@
     <string name="tooltip_realname">Tooltip Realname</string>
     <string name="tooltip_company">Tooltip Company</string>
     <string name="tooltip_repository">Repository Count</string>
+    <string name="tooltip_location">Tooltip Location</string>
+    <string name="search">Search</string>
 </resources>
