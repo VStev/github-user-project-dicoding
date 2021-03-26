@@ -32,8 +32,7 @@ class HomeFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val view = viewBind.root
-        return view
+        return viewBind.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

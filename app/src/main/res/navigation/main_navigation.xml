@@ -21,9 +21,9 @@
     </activity>
     <fragment
         android:id="@+id/followerFragment"
-        android:name="com.submission.githubuser.fragments.FollowerFragment"
+        android:name="com.submission.githubuser.fragments.FollowFragment"
         android:label="fragment_follower"
-        tools:layout="@layout/fragment_follower" >
+        tools:layout="@layout/fragment_follow" >
         <action
             android:id="@+id/action_followerFragment_to_userDetailActivity"
             app:destination="@id/userDetailActivity" />

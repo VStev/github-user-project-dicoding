@@ -83,8 +83,4 @@ class UserDetailActivity : AppCompatActivity() {
             viewbind.progressBar.visibility = View.GONE
         }
     }
-
-    private fun getUserData(){
-        TODO("HONESTLY I DONT KNOW IF THIS WILL BE USED OR NOT")
-    }
 }
