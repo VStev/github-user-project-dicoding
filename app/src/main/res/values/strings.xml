@@ -11,4 +11,6 @@
     <string name="tooltip_repository">Repository Count</string>
     <string name="tooltip_location">Tooltip Location</string>
     <string name="search">Search</string>
+    <string name="search_hint">Enter username</string>
+    <string name="search_result">Search Result</string>
 </resources>

@@ -1,10 +1,12 @@
 package com.submission.githubuser.webapi
 
+import com.submission.githubuser.user.SearchUserData
 import com.submission.githubuser.user.SimpleUserData
 import com.submission.githubuser.user.UserData
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface RetrofitInterface {
     @GET("/users")
@@ -18,4 +20,7 @@ interface RetrofitInterface {
 
     @GET("/users/{user}/following")
     fun fetchUsersFollowing(@Path("user") username: String): Call<ArrayList<SimpleUserData>>
+
+    @GET("/search/users")
+    fun fetchUserByID(@Query("q") username: String): Call<SearchUserData>
 }

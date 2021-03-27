@@ -16,7 +16,7 @@ import com.submission.githubuser.viewmodelproviders.UserDetailViewModel
 
 class UserDetailActivity : AppCompatActivity() {
 
-    private lateinit var viewbind: ActivityUserDetailBinding
+    private lateinit var viewBind: ActivityUserDetailBinding
     private lateinit var userID: String
     private lateinit var userDetailViewModel: UserDetailViewModel
 
@@ -28,8 +28,8 @@ class UserDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewbind = ActivityUserDetailBinding.inflate(layoutInflater)
-        setContentView(viewbind.root)
+        viewBind = ActivityUserDetailBinding.inflate(layoutInflater)
+        setContentView(viewBind.root)
         supportActionBar?.elevation = 0f
         userDetailViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(UserDetailViewModel::class.java)
         showLoading(true)
@@ -38,23 +38,24 @@ class UserDetailActivity : AppCompatActivity() {
 
     private fun showLayout(){
         val sectionPageAdapter = SectionsPageAdapter(this)
-        val viewPager: ViewPager2 = viewbind.viewpager
+        val viewPager: ViewPager2 = viewBind.viewpager
         viewPager.adapter = sectionPageAdapter
-        val tabs: TabLayout = viewbind.tabs
+        val tabs: TabLayout = viewBind.tabs
         var follower: String
         var following: String
         userID = intent.getStringExtra(EXTRA_USER).toString()
+        supportActionBar?.title = userID
         userDetailViewModel.fetchData(userID)
         userDetailViewModel.getDetail().observe(this, { UserData ->
             if (UserData != null){
                 val text = "Public Repo : ${UserData.repositoryCount}"
                 Glide.with(this)
                     .load(UserData.avatarUrl)
-                    .into(viewbind.circleImageView)
-                viewbind.name.text = UserData.name
-                viewbind.company.text = UserData.company
-                viewbind.location.text = UserData.location
-                viewbind.repository.text = text
+                    .into(viewBind.circleImageView)
+                viewBind.name.text = UserData.name
+                viewBind.company.text = UserData.company
+                viewBind.location.text = UserData.location
+                viewBind.repository.text = text
                 follower = UserData.followersCount.toString()
                 following = UserData.followingCount.toString()
                 showLoading(false)
@@ -69,9 +70,9 @@ class UserDetailActivity : AppCompatActivity() {
 
     private fun showLoading(state: Boolean) {
         if (state) {
-            viewbind.progressBar.visibility = View.VISIBLE
+            viewBind.progressBar.visibility = View.VISIBLE
         } else {
-            viewbind.progressBar.visibility = View.GONE
+            viewBind.progressBar.visibility = View.GONE
         }
     }
 }
