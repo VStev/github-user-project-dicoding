@@ -49,12 +49,18 @@ class UserDetailActivity : AppCompatActivity() {
         userDetailViewModel.getDetail().observe(this, { UserData ->
             if (UserData != null){
                 val text = "Public Repo : ${UserData.repositoryCount}"
-                Glide.with(this)
-                    .load(UserData.avatarUrl)
-                    .into(viewBind.circleImageView)
+                if (UserData.avatarUrl != ""){
+                    Glide.with(this)
+                        .load(UserData.avatarUrl)
+                        .into(viewBind.circleImageView)
+                }else{
+                    Glide.with(this)
+                        .load(R.drawable.ic_baseline_person_24)
+                        .into(viewBind.circleImageView)
+                }
                 viewBind.name.text = UserData.name
-                viewBind.company.text = UserData.company
-                viewBind.location.text = UserData.location
+                if (UserData.company != "") viewBind.company.text = UserData.company else viewBind.company.text = "-"
+                if (UserData.location != "") viewBind.location.text = UserData.location else viewBind.location.text = "-"
                 viewBind.repository.text = text
                 follower = UserData.followersCount.toString()
                 following = UserData.followingCount.toString()
