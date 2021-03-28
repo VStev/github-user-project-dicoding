@@ -9,6 +9,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportActionBar?.title = resources.getString(R.string.app_name)
+        supportActionBar?.title = resources.getString(R.string.homepage_header)
     }
 }

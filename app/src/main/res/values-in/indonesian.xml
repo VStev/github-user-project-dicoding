@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GitHubUser</string>
+    <string name="homepage_header">Beranda</string>
+    <string name="follower_tab_header">Pengikut</string>
+    <string name="following_tab_header">Mengikuti</string>
+    <string name="search">Cari</string>
+    <string name="search_hint">Masukkan username</string>
+    <string name="search_result">Hasil Pencarian</string>
+    <string name="change_language">Ubah Bahasa</string>
+    <string name="tooltip_username">Tooltip Username</string>
+    <string name="tooltip_picture">profile picture</string>
+    <string name="tooltip_realname">Tooltip Realname</string>
+    <string name="tooltip_company">Tooltip Company</string>
+    <string name="tooltip_repository">Jumlah Repository</string>
+    <string name="tooltip_location">Tooltip Location</string>
+</resources>
