@@ -14,4 +14,6 @@
     <string name="tooltip_company">Tooltip Company</string>
     <string name="tooltip_repository">Repository Count</string>
     <string name="tooltip_location">Tooltip Location</string>
+    <string name="no_location">No Location Info</string>
+    <string name="no_company">No Company Info</string>
 </resources>

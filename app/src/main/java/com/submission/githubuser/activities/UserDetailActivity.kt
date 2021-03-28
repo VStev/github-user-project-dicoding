@@ -59,9 +59,9 @@ class UserDetailActivity : AppCompatActivity() {
                     .into(viewBind.circleImageView)
                 viewBind.name.text = UserData.name
                 if (UserData.company != null) viewBind.company.text =
-                    UserData.company else viewBind.company.text = "-"
+                    UserData.company else viewBind.company.text = getString(R.string.no_company)
                 if (UserData.location != null) viewBind.location.text =
-                    UserData.location else viewBind.location.text = "-"
+                    UserData.location else viewBind.location.text = getString(R.string.no_location)
                 viewBind.repository.text = text
                 follower = UserData.followersCount.toString()
                 following = UserData.followingCount.toString()
