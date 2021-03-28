@@ -14,7 +14,7 @@ class CardViewUserAdapter : RecyclerView.Adapter<CardViewUserAdapter.UserDataHol
     private val mData = ArrayList<SimpleUserData>()
     private lateinit var onItemClickCallback: OnItemClickCallback
 
-    fun setData(items: ArrayList<SimpleUserData>){
+    fun setData(items: ArrayList<SimpleUserData>) {
         mData.clear()
         mData.addAll(items)
         notifyDataSetChanged()
@@ -22,21 +22,13 @@ class CardViewUserAdapter : RecyclerView.Adapter<CardViewUserAdapter.UserDataHol
 
     inner class UserDataHolder(items: View) : RecyclerView.ViewHolder(items) {
         private val binding = CardviewUsersBinding.bind(itemView)
-        fun bind(userData: SimpleUserData){
-            if (userData.avatarUrl != ""){
-                Glide.with(binding.root)
-                    .load(userData.avatarUrl)
-                    .apply(RequestOptions().override(250, 250))
-                    .into(binding.imageProfileThumbnail)
-            }else{
-                Glide.with(binding.root)
-                    .load(R.drawable.ic_baseline_person_24)
-                    .apply(RequestOptions().override(250, 250))
-                    .into(binding.imageProfileThumbnail)
-            }
-
+        fun bind(userData: SimpleUserData) {
+            Glide.with(binding.root)
+                .load(userData.avatarUrl)
+                .apply(RequestOptions().override(250, 250))
+                .into(binding.imageProfileThumbnail)
             binding.textUsername.text = userData.username
-            binding.textUsername.setOnClickListener{onItemClickCallback.onItemClicked(binding.textUsername.text.toString())}
+            binding.textUsername.setOnClickListener { onItemClickCallback.onItemClicked(binding.textUsername.text.toString()) }
         }
     }
 
@@ -45,7 +37,8 @@ class CardViewUserAdapter : RecyclerView.Adapter<CardViewUserAdapter.UserDataHol
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserDataHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.cardview_users, parent, false)
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.cardview_users, parent, false)
         return UserDataHolder(view)
     }
 
