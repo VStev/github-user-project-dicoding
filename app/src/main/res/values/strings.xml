@@ -15,4 +15,7 @@
     <string name="change_language">Change Language</string>
     <string name="no_location">No Location Info</string>
     <string name="no_company">No Company Info</string>
+    <string name="no_result_icon" translatable="false">No result icon</string>
+    <string name="whoops">Whoops!</string>
+    <string name="there_s_nothing_here">There\'s nothing here</string>
 </resources>

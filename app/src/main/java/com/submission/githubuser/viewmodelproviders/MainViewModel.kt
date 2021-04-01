@@ -46,6 +46,7 @@ class MainViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<ArrayList<SimpleUserData>>?, t: Throwable?) {
+                listUsers.value = null
             }
         })
     }

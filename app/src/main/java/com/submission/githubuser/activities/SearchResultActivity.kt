@@ -1,10 +1,9 @@
 package com.submission.githubuser.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,8 +38,12 @@ class SearchResultActivity : AppCompatActivity() {
         val dataAdapter = CardViewUserAdapter()
         mainViewModel.fetchUserSearches(userID)
         mainViewModel.getSearchResults().observe(this, { SimpleUserData ->
-            if (SimpleUserData != null){
+            if (SimpleUserData != null && SimpleUserData.size != 0){
                 dataAdapter.setData(SimpleUserData)
+                showLoading(false)
+            }else{
+                viewBind.userList.visibility = View.GONE
+                viewBind.constraintLayout.visibility = View.VISIBLE
                 showLoading(false)
             }
         })

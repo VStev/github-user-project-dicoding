@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +21,7 @@ class FollowFragment : Fragment() {
 
     private lateinit var recycleView: RecyclerView
     private var binding: FragmentFollowBinding? = null
-    private val viewBind  get() = binding!!
+    private val viewBind get() = binding
     private lateinit var mainViewModel: MainViewModel
 
     companion object {
@@ -34,9 +35,9 @@ class FollowFragment : Fragment() {
             }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): FrameLayout? {
         binding = FragmentFollowBinding.inflate(inflater, container, false)
-        return viewBind.root
+        return viewBind?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,8 +56,12 @@ class FollowFragment : Fragment() {
         recycleView.adapter = dataAdapter
         mainViewModel.fetchFollows(argument, username)
         mainViewModel.getFollows().observe(viewLifecycleOwner, {SimpleUserData ->
-            if (SimpleUserData != null){
+            if (SimpleUserData != null && SimpleUserData.size != 0){
                 dataAdapter.setData(SimpleUserData)
+                showLoading(false)
+            }else{
+                viewBind?.userList?.visibility = View.GONE
+                viewBind?.constraintLayout?.visibility = View.VISIBLE
                 showLoading(false)
             }
         })
@@ -71,9 +76,9 @@ class FollowFragment : Fragment() {
 
     private fun showLoading(state: Boolean) {
         if (state) {
-            viewBind.progressBar.visibility = View.VISIBLE
+            viewBind?.progressBar?.visibility = View.VISIBLE
         } else {
-            viewBind.progressBar.visibility = View.GONE
+            viewBind?.progressBar?.visibility = View.GONE
         }
     }
 }

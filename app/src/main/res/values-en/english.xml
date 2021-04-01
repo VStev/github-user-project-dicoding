@@ -16,4 +16,6 @@
     <string name="tooltip_location">Tooltip Location</string>
     <string name="no_location">No Location Info</string>
     <string name="no_company">No Company Info</string>
+    <string name="whoops">Whoops!</string>
+    <string name="there_s_nothing_here">There\'s nothing here</string>
 </resources>
