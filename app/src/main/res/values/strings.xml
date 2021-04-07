@@ -3,12 +3,12 @@
     <string name="homepage_header">Homepage</string>
     <string name="follower_tab_header">Follower</string>
     <string name="following_tab_header">Following</string>
-    <string name="tooltip_username">Tooltip Username</string>
-    <string name="tooltip_picture">profile picture</string>
-    <string name="tooltip_realname">Tooltip Realname</string>
-    <string name="tooltip_company">Tooltip Company</string>
-    <string name="tooltip_repository">Repository Count</string>
-    <string name="tooltip_location">Tooltip Location</string>
+    <string name="tooltip_username" translatable="false">Tooltip Username</string>
+    <string name="tooltip_picture" translatable="false">profile picture</string>
+    <string name="tooltip_realname" translatable="false">Tooltip Realname</string>
+    <string name="tooltip_company" translatable="false">Tooltip Company</string>
+    <string name="tooltip_repository" translatable="false">Repository Count</string>
+    <string name="tooltip_location" translatable="false">Tooltip Location</string>
     <string name="search">Search</string>
     <string name="search_hint">Enter username</string>
     <string name="search_result">Search Result</string>
@@ -18,4 +18,5 @@
     <string name="no_result_icon" translatable="false">No result icon</string>
     <string name="whoops">Whoops!</string>
     <string name="there_s_nothing_here">There\'s nothing here</string>
+    <string name="reminder_setting">Reminder Setting</string>
 </resources>

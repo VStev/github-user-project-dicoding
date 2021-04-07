@@ -8,14 +8,9 @@
     <string name="search_hint">Enter username</string>
     <string name="search_result">Search Result</string>
     <string name="change_language">Change Language</string>
-    <string name="tooltip_username">Tooltip Username</string>
-    <string name="tooltip_picture">profile picture</string>
-    <string name="tooltip_realname">Tooltip Realname</string>
-    <string name="tooltip_company">Tooltip Company</string>
-    <string name="tooltip_repository">Repository Count</string>
-    <string name="tooltip_location">Tooltip Location</string>
     <string name="no_location">No Location Info</string>
     <string name="no_company">No Company Info</string>
     <string name="whoops">Whoops!</string>
     <string name="there_s_nothing_here">There\'s nothing here</string>
+    <string name="reminder_setting">Reminder Setting</string>
 </resources>

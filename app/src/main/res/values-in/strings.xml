@@ -8,14 +8,9 @@
     <string name="search_hint">Masukkan username</string>
     <string name="search_result">Hasil Pencarian</string>
     <string name="change_language">Ubah Bahasa</string>
-    <string name="tooltip_username">Tooltip Username</string>
-    <string name="tooltip_picture">profile picture</string>
-    <string name="tooltip_realname">Tooltip Realname</string>
-    <string name="tooltip_company">Tooltip Company</string>
-    <string name="tooltip_repository">Jumlah Repository</string>
-    <string name="tooltip_location">Tooltip Location</string>
     <string name="no_location">Tidak Ada Info Lokasi</string>
     <string name="no_company">Tidak Ada Info Perusahaan</string>
     <string name="whoops">Whoops!</string>
     <string name="there_s_nothing_here">Tidak ada info user disini</string>
+    <string name="reminder_setting">Pengaturan Pengingat</string>
 </resources>
