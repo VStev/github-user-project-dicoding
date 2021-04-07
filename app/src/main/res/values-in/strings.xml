@@ -13,4 +13,7 @@
     <string name="whoops">Whoops!</string>
     <string name="there_s_nothing_here">Tidak ada info user disini</string>
     <string name="reminder_setting">Pengaturan Pengingat</string>
+    <string name="you_dont_have_any_favourite_users_yet">Kamu masih belum punya user favorit nih.</string>
+    <string name="add_some_to_this_list_by_clicking_the_fav_button">Tambahkan user favoritmu dengan menekan tombol Fav!</string>
+    <string name="favourites">Favorit</string>
 </resources>

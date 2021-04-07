@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/nav_home">
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/nav_home"
         android:name="com.submission.githubuser.fragments.HomeFragment"
-        android:label="fragment_home"
+        android:label="@string/homepage_header"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_userDetailActivity"
@@ -26,6 +26,15 @@
         tools:layout="@layout/fragment_follow" >
         <action
             android:id="@+id/action_followerFragment_to_userDetailActivity"
+            app:destination="@id/userDetailActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_favourites"
+        android:name="com.submission.githubuser.fragments.FavouriteFragment"
+        android:label="@string/favourites"
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_userDetailActivity"
             app:destination="@id/userDetailActivity" />
     </fragment>
 </navigation>
