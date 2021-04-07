@@ -17,5 +17,10 @@
     <string name="add_some_to_this_list_by_clicking_the_fav_button">Tambahkan user favoritmu dengan menekan tombol Fav!</string>
     <string name="favourites">Favorit</string>
     <string name="settings">Pengaturan</string>
-    <string name="reminder_detail">Ingatkan saya setiap jam 09:00 AM</string>
+    <string name="reminder_detail">Notifikasi</string>
+    <string name="time_detail">Atur Waktu</string>
+    <string name="reminder_summary_on">Anda akan mendapatkan notifikasi 1 kali sehari</string>
+    <string name="reminder_summary_off">Anda tidak akan mendapatkan notifikasi apapun</string>
+    <string name="notification_title">Hallo!</string>
+    <string name="notification_message">Mari temukan lebih banyak user!</string>
 </resources>

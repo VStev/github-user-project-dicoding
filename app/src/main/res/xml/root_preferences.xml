@@ -3,8 +3,10 @@
     <PreferenceCategory app:title="@string/reminder_setting">
 
         <SwitchPreferenceCompat
-            app:key="reminder"
-            app:title="@string/reminder_detail" />
+            app:key="@string/key_reminder"
+            app:title="@string/reminder_detail"
+            app:summaryOn="@string/reminder_summary_on"
+            app:summaryOff="@string/reminder_summary_off"/>
 
     </PreferenceCategory>
 
