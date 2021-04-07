@@ -19,7 +19,7 @@
     <string name="settings">Pengaturan</string>
     <string name="reminder_detail">Notifikasi</string>
     <string name="time_detail">Atur Waktu</string>
-    <string name="reminder_summary_on">Anda akan mendapatkan notifikasi 1 kali sehari</string>
+    <string name="reminder_summary_on">Anda akan mendapatkan notifikasi 1 kali sehari pada jam 9 pagi</string>
     <string name="reminder_summary_off">Anda tidak akan mendapatkan notifikasi apapun</string>
     <string name="notification_title">Hallo!</string>
     <string name="notification_message">Mari temukan lebih banyak user!</string>
