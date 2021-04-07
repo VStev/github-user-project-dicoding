@@ -37,4 +37,8 @@
             android:id="@+id/action_favouriteFragment_to_userDetailActivity"
             app:destination="@id/userDetailActivity" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.submission.githubuser.fragments.SettingsFragment"
+        android:label="@string/settings" />
 </navigation>

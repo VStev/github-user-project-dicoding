@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         val navController = findNavController(R.id.nav_host_fragment)
-        val appBarConfiguration = AppBarConfiguration.Builder(R.id.nav_home, R.id.nav_favourites).build()
+        val appBarConfiguration = AppBarConfiguration.Builder(R.id.nav_home, R.id.nav_favourites, R.id.nav_settings).build()
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         supportActionBar?.title = resources.getString(R.string.homepage_header)

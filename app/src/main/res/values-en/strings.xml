@@ -16,4 +16,6 @@
     <string name="you_dont_have_any_favourite_users_yet">You dont have any favourite users, yet</string>
     <string name="add_some_to_this_list_by_clicking_the_fav_button">Add some to this list by clicking the Fav button!</string>
     <string name="favourites">Favourites</string>
+    <string name="settings">Settings</string>
+    <string name="reminder_detail">Remind me every 09:00 AM</string>
 </resources>

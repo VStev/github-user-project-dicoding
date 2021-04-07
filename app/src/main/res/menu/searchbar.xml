@@ -14,8 +14,4 @@
         android:title="@string/change_language"
         app:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_change_settings"
-        android:title="@string/reminder_setting"
-        app:showAsAction="never"/>
 </menu>

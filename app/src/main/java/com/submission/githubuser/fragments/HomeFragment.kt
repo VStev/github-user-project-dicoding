@@ -70,9 +70,6 @@ class HomeFragment : Fragment() {
                 val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
                 startActivity(mIntent)
             }
-            R.id.action_change_settings -> {
-
-            }
         }
         return super.onOptionsItemSelected(item)
     }

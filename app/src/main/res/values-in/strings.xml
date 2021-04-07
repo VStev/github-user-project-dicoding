@@ -16,4 +16,6 @@
     <string name="you_dont_have_any_favourite_users_yet">Kamu masih belum punya user favorit nih.</string>
     <string name="add_some_to_this_list_by_clicking_the_fav_button">Tambahkan user favoritmu dengan menekan tombol Fav!</string>
     <string name="favourites">Favorit</string>
+    <string name="settings">Pengaturan</string>
+    <string name="reminder_detail">Ingatkan saya setiap jam 09:00 AM</string>
 </resources>
