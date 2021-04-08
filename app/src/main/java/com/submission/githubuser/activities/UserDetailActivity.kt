@@ -1,6 +1,7 @@
 package com.submission.githubuser.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +31,7 @@ class UserDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        userID = intent.getStringExtra(EXTRA_USER).toString()
         viewBind = ActivityUserDetailBinding.inflate(layoutInflater)
         setContentView(viewBind.root)
         supportActionBar?.elevation = 0f
@@ -42,13 +44,14 @@ class UserDetailActivity : AppCompatActivity() {
     }
 
     private fun showLayout() {
+        Log.d("a", "showLayout: IM IN ACTIVITY $this AN MY EXTRA USER IS $userID")
         val sectionPageAdapter = SectionsPageAdapter(this)
-        val viewPager: ViewPager2 = viewBind.viewpager
+        val viewPagerLayout = findViewById<View>(R.id.viewpager_layout)
+        val viewPager: ViewPager2 = viewPagerLayout.findViewById(R.id.viewpager)
         viewPager.adapter = sectionPageAdapter
-        val tabs: TabLayout = viewBind.tabs
+        val tabs: TabLayout = viewPagerLayout.findViewById(R.id.tabs)
         var follower: String
         var following: String
-        userID = intent.getStringExtra(EXTRA_USER).toString()
         supportActionBar?.title = userID
         userDetailViewModel.fetchData(userID)
         userDetailViewModel.getDetail().observe(this, { UserData ->

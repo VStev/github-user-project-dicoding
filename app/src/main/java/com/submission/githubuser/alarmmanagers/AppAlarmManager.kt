@@ -13,8 +13,6 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.submission.githubuser.R
-import java.text.ParseException
-import java.text.SimpleDateFormat
 import java.util.*
 
 class AppAlarmManager : BroadcastReceiver() {
@@ -56,19 +54,7 @@ class AppAlarmManager : BroadcastReceiver() {
         notificationManagerCompat.notify(NOTIFICATION_ID, notification)
     }
 
-    private fun isValid(date: String, format: String): Boolean {
-        return try {
-            val df = SimpleDateFormat(format, Locale.getDefault())
-            df.isLenient = false
-            df.parse(date)
-            false
-        } catch (e: ParseException) {
-            true
-        }
-    }
-
     fun setRepeatingAlarm(context: Context, time: String) {
-        if (isValid(time, TIME_FORMAT)) return
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AppAlarmManager::class.java)
         val timeArray = time.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()

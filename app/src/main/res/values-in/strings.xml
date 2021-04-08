@@ -23,4 +23,5 @@
     <string name="reminder_summary_off">Anda tidak akan mendapatkan notifikasi apapun</string>
     <string name="notification_title">Hallo!</string>
     <string name="notification_message">Mari temukan lebih banyak user!</string>
+    <string name="add_fav">Tambahkan ke favorit</string>
 </resources>
