@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <permission android:name="com.submission.githubuser.READ_DATABASE" android:protectionLevel="normal"/>
+    <permission android:name="com.submission.githubuser.WRITE_DATABASE" android:protectionLevel="normal"/>
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -15,7 +17,7 @@
         <receiver
             android:name=".alarmmanagers.AppAlarmManager"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
 
         <activity
             android:name=".activities.SplashScreenActivity"
@@ -33,6 +35,15 @@
             </intent-filter>
             <nav-graph android:value="@navigation/main_navigation" />
         </activity>
+
+        <provider
+            android:name="com.submission.githubuser.databaseapi.DatabaseContentProvider"
+            android:authorities="com.submission.githubuser"
+            android:enabled="true"
+            android:exported="true"
+            android:readPermission="com.submission.githubuser.READ_DATABASE"
+            android:writePermission="com.submission.githubuser.WRITE_DATABASE"/>
+
     </application>
 
 </manifest>

@@ -1,22 +1,22 @@
 package com.submission.githubuser.databaseapi
 
-import androidx.lifecycle.LiveData
+import android.content.ContentValues
+import android.database.Cursor
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.submission.githubuser.user.SimpleUserData
 
 @Dao
 interface RoomDAO {
     @Query("SELECT * FROM SimpleUserData")
-    fun getAll(): LiveData<List<SimpleUserData>>
+    fun getAll(): Cursor
 
     @Query("SELECT * FROM SimpleUserData where username = :user")
-    fun findUserById(user: String): LiveData<List<SimpleUserData>>
+    fun findUserById(user: String): Cursor
 
     @Insert
-    fun insert(vararg user: SimpleUserData)
+    fun insert(vararg user: ContentValues): Long
 
     @Query("DELETE FROM SimpleUserData where username = :user")
-    fun delete(user: String)
+    fun delete(user: String): Int
 }

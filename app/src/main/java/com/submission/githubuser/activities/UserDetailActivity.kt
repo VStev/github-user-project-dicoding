@@ -14,7 +14,7 @@ import com.submission.githubuser.databinding.ActivityUserDetailBinding
 import com.submission.githubuser.fragments.SectionsPageAdapter
 import com.submission.githubuser.viewmodelproviders.UserDetailViewModel
 
-class UserDetailActivity : AppCompatActivity() {
+class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var viewBind: ActivityUserDetailBinding
     private lateinit var userID: String
@@ -66,6 +66,7 @@ class UserDetailActivity : AppCompatActivity() {
                 viewBind.repository.text = text
                 follower = UserData.followersCount.toString()
                 following = UserData.followingCount.toString()
+                viewBind.button.setOnClickListener (this)
                 showLoading(false)
                 TabLayoutMediator(tabs, viewPager) { tab, position ->
                     val tabTitle =
@@ -84,6 +85,12 @@ class UserDetailActivity : AppCompatActivity() {
             viewBind.progressBar.visibility = View.VISIBLE
         } else {
             viewBind.progressBar.visibility = View.GONE
+        }
+    }
+
+    override fun onClick(v: View?) {
+        if (v != null) {
+            TODO("wait a minute lemme implement content resolver")
         }
     }
 }
