@@ -32,10 +32,13 @@
         android:id="@+id/nav_favourites"
         android:name="com.submission.githubuser.fragments.FavouriteFragment"
         android:label="@string/favourites"
-        tools:layout="@layout/fragment_favourite" >
+        tools:layout="@layout/fragment_favourite">
         <action
             android:id="@+id/action_favouriteFragment_to_userDetailActivity"
             app:destination="@id/userDetailActivity" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="http://local_fav" />
     </fragment>
     <fragment
         android:id="@+id/nav_settings"

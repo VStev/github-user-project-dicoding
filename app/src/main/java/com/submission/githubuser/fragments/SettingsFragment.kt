@@ -39,7 +39,7 @@ class SettingsFragment : PreferenceFragmentCompat(),
         if (key == REMINDER) {
             reminderPreference.isChecked = sharedPreferences.getBoolean(REMINDER, false)
             if (reminderPreference.isChecked){
-                context?.let { alarmManager.setRepeatingAlarm(it, "09:00") }
+                context?.let { alarmManager.setRepeatingAlarm(it, "09:00:00") }
             }else{
                 context?.let { alarmManager.cancelAlarm(it) }
             }
