@@ -1,9 +1,7 @@
 package com.submission.githubuser.fragments
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,9 +36,7 @@ class FollowFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): FrameLayout? {
-        Log.d(TAG, "showLayout: IM CREATED")
         binding = FragmentFollowBinding.inflate(inflater, container, false)
-        Log.d(TAG, "showLayout: I HAVE BINDING $binding AND VIEWBINDING $viewBind AND THE ROOT IS ${viewBind?.root}")
         return viewBind?.root
     }
 
@@ -53,21 +49,16 @@ class FollowFragment : Fragment() {
     }
 
     private fun showLayout() {
-        Log.d(TAG, "showLayout: IM CALLED")
         val argument = arguments?.getInt(ARG_FOLLOW_FOLLOWING, 0)
         val username = this.activity?.intent?.getStringExtra(EXTRA_USER)
-        Log.d(TAG, "showLayout: ${this.activity}")
-        Log.d(TAG, "showLayout: $username")
         val dataAdapter = CardViewUserAdapter()
         recycleView.layoutManager = LinearLayoutManager(activity)
         recycleView.adapter = dataAdapter
         mainViewModel.fetchFollows(argument, username)
-        Log.d(TAG, "showLayout: IM IN MVM")
         mainViewModel.getFollows().observe(viewLifecycleOwner, {SimpleUserData ->
             if (SimpleUserData != null && SimpleUserData.size != 0){
                 dataAdapter.setData(SimpleUserData)
                 showLoading(false)
-                Log.d(TAG, "showLayout: I HAVE FINISHED LOADING")
             }else{
                 viewBind?.userList?.visibility = View.GONE
                 viewBind?.constraintLayout?.visibility = View.VISIBLE

@@ -19,7 +19,6 @@ class AppAlarmManager : BroadcastReceiver() {
 
     companion object {
         private const val NOTIFICATION_ID = 101
-        private const val TIME_FORMAT = "HH:mm"
     }
 
     override fun onReceive(context: Context, intent: Intent) {

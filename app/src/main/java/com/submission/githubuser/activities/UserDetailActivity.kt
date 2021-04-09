@@ -1,7 +1,6 @@
 package com.submission.githubuser.activities
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -44,7 +43,6 @@ class UserDetailActivity : AppCompatActivity() {
     }
 
     private fun showLayout() {
-        Log.d("a", "showLayout: IM IN ACTIVITY $this AN MY EXTRA USER IS $userID")
         val sectionPageAdapter = SectionsPageAdapter(this)
         val viewPagerLayout = findViewById<View>(R.id.viewpager_layout)
         val viewPager: ViewPager2 = viewPagerLayout.findViewById(R.id.viewpager)

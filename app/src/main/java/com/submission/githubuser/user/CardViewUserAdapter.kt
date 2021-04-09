@@ -14,7 +14,7 @@ class CardViewUserAdapter : RecyclerView.Adapter<CardViewUserAdapter.UserDataHol
     private val mData = ArrayList<SimpleUserData>()
     private lateinit var onItemClickCallback: OnItemClickCallback
 
-    fun setData(items: ArrayList<SimpleUserData>) {
+    fun setData(items: List<SimpleUserData>) {
         mData.clear()
         mData.addAll(items)
         notifyDataSetChanged()

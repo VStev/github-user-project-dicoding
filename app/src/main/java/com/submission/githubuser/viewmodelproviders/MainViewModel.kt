@@ -14,7 +14,7 @@ import retrofit2.Response
 
 class MainViewModel : ViewModel() {
 
-    private val listUsers = MutableLiveData<ArrayList<SimpleUserData>>()
+    private val listUsers = MutableLiveData<List<SimpleUserData>>()
     private val searchResult = MutableLiveData<SearchUserData>()
     private val retrofit = RetrofitInteractable()
 
@@ -22,13 +22,13 @@ class MainViewModel : ViewModel() {
         val fetch = retrofit.fetchUserFromGitHub()
         val service = fetch.create(RetrofitInterface::class.java)
         val call = service.fetchUsers()
-        call.enqueue(object: Callback<ArrayList<SimpleUserData>> {
-            override fun onResponse(call: Call<ArrayList<SimpleUserData>>, response: Response<ArrayList<SimpleUserData>>) {
+        call.enqueue(object: Callback<List<SimpleUserData>> {
+            override fun onResponse(call: Call<List<SimpleUserData>>, response: Response<List<SimpleUserData>>) {
                 if (response.code() == 200){
                     listUsers.value = response.body()
                 }
             }
-            override fun onFailure(call: Call<ArrayList<SimpleUserData>>?, t: Throwable?) {
+            override fun onFailure(call: Call<List<SimpleUserData>>?, t: Throwable?) {
             }
 
         })
@@ -38,14 +38,14 @@ class MainViewModel : ViewModel() {
         val fetch = retrofit.fetchUserFromGitHub()
         val service = fetch.create(RetrofitInterface::class.java)
         val call = if (argument == 0) username?.let { service.fetchUserFollowers(it) } else username?.let { service.fetchUsersFollowing(it) }
-        call?.enqueue(object: Callback<ArrayList<SimpleUserData>> {
-            override fun onResponse(call: Call<ArrayList<SimpleUserData>>, response: Response<ArrayList<SimpleUserData>>) {
+        call?.enqueue(object: Callback<List<SimpleUserData>> {
+            override fun onResponse(call: Call<List<SimpleUserData>>, response: Response<List<SimpleUserData>>) {
                 if (response.code() == 200){
                     listUsers.value = response.body()
                 }
             }
 
-            override fun onFailure(call: Call<ArrayList<SimpleUserData>>?, t: Throwable?) {
+            override fun onFailure(call: Call<List<SimpleUserData>>?, t: Throwable?) {
                 listUsers.value = null
             }
         })
@@ -72,15 +72,15 @@ class MainViewModel : ViewModel() {
         })
     }
 
-    fun getUsers(): LiveData<ArrayList<SimpleUserData>> {
+    fun getUsers(): LiveData<List<SimpleUserData>> {
         return listUsers
     }
 
-    fun getFollows(): LiveData<ArrayList<SimpleUserData>>{
+    fun getFollows(): LiveData<List<SimpleUserData>>{
         return listUsers
     }
 
-    fun getSearchResults(): LiveData<ArrayList<SimpleUserData>>{
+    fun getSearchResults(): LiveData<List<SimpleUserData>>{
         return listUsers
     }
 
