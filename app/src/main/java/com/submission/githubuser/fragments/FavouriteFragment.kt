@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.*
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -77,18 +78,16 @@ class FavouriteFragment : Fragment() {
         val dataAdapter = CardViewUserAdapter()
         recycleView.layoutManager = LinearLayoutManager(activity)
         recycleView.adapter = dataAdapter
-        context?.let {
-            favouritesViewModel.getfav(it).observe(viewLifecycleOwner, { SimpleUserData ->
-                if (SimpleUserData != null && SimpleUserData.isNotEmpty()){
-                    dataAdapter.setData(SimpleUserData)
-                    showLoading(false)
-                }else{
-                    viewBind?.userList?.visibility = View.GONE
-                    viewBind?.constraintLayout?.visibility = View.VISIBLE
-                    showLoading(false)
-                }
-            })
-        }
+        favouritesViewModel.getfav(context, null).observe(viewLifecycleOwner, { SimpleUserData ->
+            if (SimpleUserData != null && SimpleUserData.isNotEmpty()){
+                dataAdapter.setData(SimpleUserData)
+                showLoading(false)
+            }else{
+                viewBind?.userList?.visibility = View.GONE
+                viewBind?.constraintLayout?.visibility = View.VISIBLE
+                showLoading(false)
+            }
+        })
         dataAdapter.setOnItemClickCallback(object: CardViewUserAdapter.OnItemClickCallback{
             override fun onItemClicked(user: String?) {
                 val toUserDetails = Intent(activity, UserDetailActivity::class.java)
@@ -104,5 +103,11 @@ class FavouriteFragment : Fragment() {
         } else {
             viewBind?.progressBar?.visibility = View.GONE
         }
+    }
+
+    override fun onDestroy() {
+        Log.d("ERROR SEARCH", "FAV FRAGMENT DESTROY'D")
+        super.onDestroy()
+        binding = null
     }
 }

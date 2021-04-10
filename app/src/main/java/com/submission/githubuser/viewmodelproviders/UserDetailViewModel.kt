@@ -22,7 +22,7 @@ class UserDetailViewModel : ViewModel() {
         call.enqueue(object : Callback<UserData> {
             override fun onResponse(call: Call<UserData>?, response: Response<UserData>?) {
                 if (response?.code() == 200) {
-                    userDetail.value = response.body()
+                    userDetail.postValue(response.body())
                 }
             }
 

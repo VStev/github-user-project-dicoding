@@ -1,6 +1,7 @@
 package com.submission.githubuser.activities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -12,13 +13,17 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.submission.githubuser.R
 import com.submission.githubuser.databinding.ActivityUserDetailBinding
 import com.submission.githubuser.fragments.SectionsPageAdapter
+import com.submission.githubuser.viewmodelproviders.FavouritesViewModel
 import com.submission.githubuser.viewmodelproviders.UserDetailViewModel
 
 class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var viewBind: ActivityUserDetailBinding
     private lateinit var userID: String
+    private lateinit var avatarURL: String
+    private var favStatus: Boolean = false
     private lateinit var userDetailViewModel: UserDetailViewModel
+    private lateinit var favouritesViewModel : FavouritesViewModel
 
     companion object {
         const val EXTRA_USER = "extra user"
@@ -31,6 +36,7 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userID = intent.getStringExtra(EXTRA_USER).toString()
+        this.cacheDir?.delete()
         viewBind = ActivityUserDetailBinding.inflate(layoutInflater)
         setContentView(viewBind.root)
         supportActionBar?.elevation = 0f
@@ -38,6 +44,7 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
             this,
             ViewModelProvider.NewInstanceFactory()
         ).get(UserDetailViewModel::class.java)
+        favouritesViewModel = ViewModelProvider(this).get(FavouritesViewModel::class.java)
         showLoading(true)
         showLayout()
     }
@@ -55,6 +62,7 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
         userDetailViewModel.getDetail().observe(this, { UserData ->
             if (UserData != null) {
                 val text = "Public Repo : ${UserData.repositoryCount}"
+                avatarURL = UserData.avatarUrl.toString()
                 Glide.with(this)
                     .load(UserData.avatarUrl)
                     .into(viewBind.circleImageView)
@@ -77,7 +85,18 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
                 }.attach()
             }
         })
-
+        favouritesViewModel.getfav(this, userID).observe(this, { SimpleUserData ->
+            Log.d("REMINGTON", "showLayout: CHECKING FOR FAV IS CALLED!")
+            if (SimpleUserData.isNotEmpty()) {
+                viewBind.button.text = resources.getString(R.string.remove_fav)
+                Log.d("REMINGTON", "showLayout: CHECKING FOR FAV IS A!")
+                favStatus = true
+            } else {
+                viewBind.button.text = resources.getString(R.string.add_fav)
+                Log.d("REMINGTON", "showLayout: CHECKING FOR FAV IS B!")
+                favStatus = false
+            }
+        })
     }
 
     private fun showLoading(state: Boolean) {
@@ -90,7 +109,18 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if (v != null) {
-            TODO("wait a minute lemme implement content resolver")
+            when (favStatus){
+                false -> {
+                    favouritesViewModel.insertToFavorite(this, userID, avatarURL)
+                    viewBind.button.text = resources.getString(R.string.remove_fav)
+                    favStatus = true
+                }
+                true -> {
+                    favouritesViewModel.deleteFromFavourites(this, userID)
+                    viewBind.button.text = resources.getString(R.string.add_fav)
+                    favStatus = false
+                }
+            }
         }
     }
 }

@@ -1,10 +1,10 @@
 package com.submission.githubuser.databaseapi
 
-import android.content.ContentValues
 import android.database.Cursor
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.submission.githubuser.user.SimpleUserData
 
 @Dao
 interface RoomDAO {
@@ -15,7 +15,7 @@ interface RoomDAO {
     fun findUserById(user: String): Cursor
 
     @Insert
-    fun insert(user: ContentValues)
+    fun insert(user: SimpleUserData)
 
     @Query("DELETE FROM SimpleUserData WHERE username = :user")
     fun delete(user: String) : Int

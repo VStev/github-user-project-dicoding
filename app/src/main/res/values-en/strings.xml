@@ -24,4 +24,5 @@
     <string name="notification_title">Hello there!</string>
     <string name="notification_message">Lets check out more users!</string>
     <string name="add_fav">Add to favourites</string>
+    <string name="remove_fav">Remove from favourite</string>
 </resources>

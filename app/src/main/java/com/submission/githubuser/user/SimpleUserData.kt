@@ -13,4 +13,9 @@ data class SimpleUserData(
     @ColumnInfo
     @SerializedName("avatar_url")
     var avatarUrl: String? = ""
-)
+){
+    companion object {
+        const val user = "username"
+        const val avatar = "avatar_url"
+    }
+}

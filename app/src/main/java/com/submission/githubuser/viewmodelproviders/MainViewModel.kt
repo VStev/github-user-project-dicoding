@@ -25,7 +25,7 @@ class MainViewModel : ViewModel() {
         call.enqueue(object: Callback<List<SimpleUserData>> {
             override fun onResponse(call: Call<List<SimpleUserData>>, response: Response<List<SimpleUserData>>) {
                 if (response.code() == 200){
-                    listUsers.value = response.body()
+                    listUsers.postValue(response.body())
                 }
             }
             override fun onFailure(call: Call<List<SimpleUserData>>?, t: Throwable?) {
@@ -41,7 +41,7 @@ class MainViewModel : ViewModel() {
         call?.enqueue(object: Callback<List<SimpleUserData>> {
             override fun onResponse(call: Call<List<SimpleUserData>>, response: Response<List<SimpleUserData>>) {
                 if (response.code() == 200){
-                    listUsers.value = response.body()
+                    listUsers.postValue(response.body())
                 }
             }
 
@@ -58,7 +58,7 @@ class MainViewModel : ViewModel() {
         call.enqueue(object: Callback<SearchUserData> {
             override fun onResponse(call: Call<SearchUserData>, response: Response<SearchUserData>) {
                 if (response.code() == 200){
-                    searchResult.value = response.body()
+                    searchResult.postValue(response.body())
                     val temp: SearchUserData? = searchResult.value
                     if (temp != null) {
                         listUsers.value = temp.items
