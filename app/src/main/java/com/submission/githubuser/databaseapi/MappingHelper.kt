@@ -10,10 +10,9 @@ object MappingHelper {
 
         notesCursor?.apply {
             while (moveToNext()) {
-                val id = getInt(getColumnIndexOrThrow("uid"))
                 val username = getString(getColumnIndexOrThrow("username"))
                 val avatarUrl = getString(getColumnIndexOrThrow("avatarUrl"))
-                userList.add(SimpleUserData(id, username, avatarUrl))
+                userList.add(SimpleUserData(username, avatarUrl))
             }
         }
         return userList

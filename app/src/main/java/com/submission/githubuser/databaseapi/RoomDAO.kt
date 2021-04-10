@@ -11,12 +11,12 @@ interface RoomDAO {
     @Query("SELECT * FROM SimpleUserData")
     fun getAll(): Cursor
 
-    @Query("SELECT * FROM SimpleUserData where username = :user")
+    @Query("SELECT * FROM SimpleUserData WHERE username = :user")
     fun findUserById(user: String): Cursor
 
     @Insert
-    fun insert(vararg user: ContentValues): Long
+    fun insert(user: ContentValues)
 
-    @Query("DELETE FROM SimpleUserData where username = :user")
-    fun delete(user: String): Int
+    @Query("DELETE FROM SimpleUserData WHERE username = :user")
+    fun delete(user: String) : Int
 }

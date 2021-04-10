@@ -41,9 +41,12 @@ class DatabaseContentProvider : ContentProvider() {
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-         val status: Long? = when (sUriMatcher.match(uri)) {
-            FAVOURITE -> values?.let { favouriteDAO.insert(it) }
-             else -> 0
+        val status: Long = when (sUriMatcher.match(uri)) {
+            FAVOURITE -> {
+                values?.let { favouriteDAO.insert(it) }
+                1
+            }
+            else -> 0
         }
         context?.contentResolver?.notifyChange(CONTENT_URI, null)
         return Uri.parse("$CONTENT_URI/$status")
@@ -51,7 +54,10 @@ class DatabaseContentProvider : ContentProvider() {
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
         val status: Int = when (sUriMatcher.match(uri)) {
-            FAVOURITE_BY_ID -> favouriteDAO.delete(uri.lastPathSegment.toString())
+            FAVOURITE_BY_ID -> {
+                favouriteDAO.delete(uri.lastPathSegment.toString())
+                1
+            }
             else -> 0
         }
         context?.contentResolver?.notifyChange(CONTENT_URI, null)

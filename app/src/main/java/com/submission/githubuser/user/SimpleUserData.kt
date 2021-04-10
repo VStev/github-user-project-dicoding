@@ -7,11 +7,9 @@ import com.google.gson.annotations.SerializedName
 
 @Entity
 data class SimpleUserData(
-    @PrimaryKey(autoGenerate = true)
-    var uid: Int,
-    @ColumnInfo
+    @PrimaryKey
     @SerializedName("login")
-    var username : String? = "",
+    var username : String,
     @ColumnInfo
     @SerializedName("avatar_url")
     var avatarUrl: String? = ""

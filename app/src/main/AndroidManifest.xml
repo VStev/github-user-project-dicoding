@@ -18,7 +18,6 @@
             android:name=".alarmmanagers.AppAlarmManager"
             android:enabled="true"
             android:exported="true" />
-
         <activity
             android:name=".activities.SplashScreenActivity"
             android:theme="@style/noActionBar">
@@ -35,11 +34,9 @@
             </intent-filter>
             <nav-graph android:value="@navigation/main_navigation" />
         </activity>
-
         <provider
-            android:name="com.submission.githubuser.databaseapi.DatabaseContentProvider"
+            android:name=".databaseapi.DatabaseContentProvider"
             android:authorities="com.submission.githubuser"
-            android:enabled="true"
             android:exported="true"
             android:readPermission="com.submission.githubuser.READ_DATABASE"
             android:writePermission="com.submission.githubuser.WRITE_DATABASE"/>

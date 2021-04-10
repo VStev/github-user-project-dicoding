@@ -77,16 +77,18 @@ class FavouriteFragment : Fragment() {
         val dataAdapter = CardViewUserAdapter()
         recycleView.layoutManager = LinearLayoutManager(activity)
         recycleView.adapter = dataAdapter
-        favouritesViewModel.getfav().observe(viewLifecycleOwner, { SimpleUserData ->
-            if (SimpleUserData != null && SimpleUserData.isNotEmpty()){
-                dataAdapter.setData(SimpleUserData)
-                showLoading(false)
-            }else{
-                viewBind?.userList?.visibility = View.GONE
-                viewBind?.constraintLayout?.visibility = View.VISIBLE
-                showLoading(false)
-            }
-        })
+        context?.let {
+            favouritesViewModel.getfav(it).observe(viewLifecycleOwner, { SimpleUserData ->
+                if (SimpleUserData != null && SimpleUserData.isNotEmpty()){
+                    dataAdapter.setData(SimpleUserData)
+                    showLoading(false)
+                }else{
+                    viewBind?.userList?.visibility = View.GONE
+                    viewBind?.constraintLayout?.visibility = View.VISIBLE
+                    showLoading(false)
+                }
+            })
+        }
         dataAdapter.setOnItemClickCallback(object: CardViewUserAdapter.OnItemClickCallback{
             override fun onItemClicked(user: String?) {
                 val toUserDetails = Intent(activity, UserDetailActivity::class.java)
