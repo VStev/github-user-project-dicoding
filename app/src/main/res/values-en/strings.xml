@@ -25,4 +25,7 @@
     <string name="notification_message">Lets check out more users!</string>
     <string name="add_fav">Add to favourites</string>
     <string name="remove_fav">Remove from favourite</string>
+    <string name="something_is_wrong">Something is wrong</string>
+    <string name="wrong_detail">It seems like we can\'t reach the servers right now</string>
+    <string name="try_again">Please try again later</string>
 </resources>

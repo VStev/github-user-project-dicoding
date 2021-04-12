@@ -56,7 +56,7 @@ class FollowFragment : Fragment() {
         recycleView.adapter = dataAdapter
         mainViewModel.fetchFollows(argument, username)
         mainViewModel.getFollows().observe(viewLifecycleOwner, {SimpleUserData ->
-            if (SimpleUserData != null && SimpleUserData.size != 0){
+            if (SimpleUserData != null && SimpleUserData.isNotEmpty()){
                 dataAdapter.setData(SimpleUserData)
                 showLoading(false)
             }else{

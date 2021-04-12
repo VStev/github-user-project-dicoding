@@ -2,11 +2,9 @@ package com.submission.githubuser.databaseapi
 
 import android.content.ContentProvider
 import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
-import android.util.Log
 import com.submission.githubuser.databaseapi.AppDatabase.Companion.AUTHORITY
 import com.submission.githubuser.databaseapi.AppDatabase.Companion.CONTENT_URI
 import com.submission.githubuser.user.SimpleUserData
@@ -36,18 +34,9 @@ class DatabaseContentProvider : ContentProvider() {
         selectionArgs: Array<String>?, sortOrder: String?
     ): Cursor? {
         return when (sUriMatcher.match(uri)) {
-            FAVOURITE -> {
-                Log.d("REMINGTON", "I AM CALLED AND MY URI IS $uri AND ITS its ${sUriMatcher.match(uri)}")
-                databaseInterface.getAll()
-            }
-            FAVOURITE_BY_ID -> {
-                Log.d("REMINGTON", "I HAVE 1911 AND ITS ${uri.lastPathSegment.toString()} AND MY URI IS $uri and its ${sUriMatcher.match(uri)}")
-                databaseInterface.getSpecificUser(uri.lastPathSegment.toString())
-            }
-            else -> {
-                Log.d("REMINGTON", "PROJECT BUNNY 19C HAVE CONFISCATED OUR M40! THE URI IS $uri and its ${sUriMatcher.match(uri)}")
-                null
-            }
+            FAVOURITE -> databaseInterface.getAll()
+            FAVOURITE_BY_ID -> databaseInterface.getSpecificUser(uri.lastPathSegment.toString())
+            else -> null
         }
     }
 
@@ -72,7 +61,6 @@ class DatabaseContentProvider : ContentProvider() {
         val status: Int = when (sUriMatcher.match(uri)) {
             FAVOURITE_BY_ID -> {
                 databaseInterface.delete(uri.lastPathSegment.toString())
-                Log.d(TAG, "delete: IM DELETING SOMETHING")
                 1
             }
             else -> 0

@@ -27,7 +27,7 @@ class UserDetailViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<UserData>?, t: Throwable?) {
-
+                userDetail.value = null
             }
 
         })

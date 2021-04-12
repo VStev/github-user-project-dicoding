@@ -38,7 +38,7 @@ class SearchResultActivity : AppCompatActivity() {
         val dataAdapter = CardViewUserAdapter()
         mainViewModel.fetchUserSearches(userID)
         mainViewModel.getSearchResults().observe(this, { SimpleUserData ->
-            if (SimpleUserData != null && SimpleUserData.size != 0){
+            if (SimpleUserData != null && SimpleUserData.isNotEmpty()){
                 dataAdapter.setData(SimpleUserData)
                 showLoading(false)
             }else{

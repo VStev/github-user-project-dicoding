@@ -20,7 +20,7 @@
     <string name="there_s_nothing_here">There\'s nothing here</string>
     <string name="reminder_setting">Reminder Setting</string>
     <string name="reminder" translatable="false">No</string>
-    <string name="you_dont_have_any_favourite_users_yet">You dont have any favourite users, yet</string>
+    <string name="you_dont_have_any_favourite_users_yet">You don\'t have any favourite users, yet</string>
     <string name="add_some_to_this_list_by_clicking_the_fav_button">Add some to this list by clicking the Fav button!</string>
     <string name="favourites">Favourites</string>
     <string name="settings">Settings</string>
@@ -34,4 +34,7 @@
     <string name="notification_message">Lets check out more users!</string>
     <string name="add_fav">Add to favourites</string>
     <string name="remove_fav">Unfavourite</string>
+    <string name="something_is_wrong">Something is wrong</string>
+    <string name="wrong_detail">It seems like we can\'t reach the servers right now</string>
+    <string name="try_again">Please try again later</string>
 </resources>

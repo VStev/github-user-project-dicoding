@@ -1,7 +1,6 @@
 package com.submission.githubuser.activities
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -83,17 +82,23 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
                         } ($following)"
                     tab.text = tabTitle
                 }.attach()
+            }else{
+                Glide.with(this)
+                    .load(R.drawable.crop)
+                    .into(viewBind.circleImageView)
+                viewBind.name.text = getString(R.string.something_is_wrong)
+                viewBind.company.text = getString(R.string.wrong_detail)
+                viewBind.location.text = getString(R.string.try_again)
+                viewBind.button.visibility = View.GONE
+                showLoading(false)
             }
         })
         favouritesViewModel.getfav(this, userID).observe(this, { SimpleUserData ->
-            Log.d("REMINGTON", "showLayout: CHECKING FOR FAV IS CALLED!")
             if (SimpleUserData.isNotEmpty()) {
                 viewBind.button.text = resources.getString(R.string.remove_fav)
-                Log.d("REMINGTON", "showLayout: CHECKING FOR FAV IS A!")
                 favStatus = true
             } else {
                 viewBind.button.text = resources.getString(R.string.add_fav)
-                Log.d("REMINGTON", "showLayout: CHECKING FOR FAV IS B!")
                 favStatus = false
             }
         })

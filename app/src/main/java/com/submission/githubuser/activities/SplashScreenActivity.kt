@@ -8,8 +8,6 @@ import com.submission.githubuser.R
 
 class SplashScreenActivity : AppCompatActivity() {
 
-    private val SPLASH_SCREEN_TIMEOUT = 4000L
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
@@ -17,5 +15,9 @@ class SplashScreenActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }, SPLASH_SCREEN_TIMEOUT)
+    }
+
+    companion object {
+        private const val SPLASH_SCREEN_TIMEOUT = 4000L
     }
 }

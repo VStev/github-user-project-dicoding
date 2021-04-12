@@ -70,7 +70,7 @@ class AppAlarmManager : BroadcastReceiver() {
         calendar.set(Calendar.MINUTE, Integer.parseInt(timeArray[1]))
         calendar.set(Calendar.SECOND, 0)
         val pendingIntent = PendingIntent.getBroadcast(context, NOTIFICATION_ID, intent, 0)
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
         Toast.makeText(context, "Repeating alarm set up", Toast.LENGTH_SHORT).show()
     }
 

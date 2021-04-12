@@ -25,4 +25,7 @@
     <string name="notification_message">Mari temukan lebih banyak user!</string>
     <string name="add_fav">Tambahkan ke favorit</string>
     <string name="remove_fav">Hapus dari favorit</string>
+    <string name="something_is_wrong">Terjadi kesalahan</string>
+    <string name="wrong_detail">Sepertinya kita tidak dapat berkomunikasi dengan server saat ini</string>
+    <string name="try_again">Mohon coba kembali</string>
 </resources>
