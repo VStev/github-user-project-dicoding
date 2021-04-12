@@ -5,12 +5,10 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
-import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
@@ -65,7 +63,6 @@ class AppAlarmManager : BroadcastReceiver() {
         val intent = Intent(context, AppAlarmManager::class.java)
         val timeArray = time.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         val calendar = Calendar.getInstance()
-        Log.d(TAG, "setRepeatingAlarm: HELLO MY TIME SETTING IS ${Integer.parseInt(timeArray[0])} FOR THE HOUR AND ${Integer.parseInt(timeArray[1])} FOR THE MINUTE")
         calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(timeArray[0]))
         calendar.set(Calendar.MINUTE, Integer.parseInt(timeArray[1]))
         calendar.set(Calendar.SECOND, 0)
