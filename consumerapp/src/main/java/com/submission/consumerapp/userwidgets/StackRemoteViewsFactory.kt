@@ -16,13 +16,11 @@ class StackRemoteViewsFactory(private val context: Context) :
 
     override fun onCreate() {
         imageArray.addAll(ImageProvider.getImages(context))
-        Log.d("REMINGTON", "onCreate: ${imageArray.size}")
     }
 
     override fun onDataSetChanged() {
         imageArray.clear()
         imageArray.addAll(ImageProvider.getImages(context))
-        Log.d("REMINGTON", "onDataSetChanged: ${imageArray.size}")
     }
 
     override fun onDestroy() {
