@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">ConsumerApp</string>
-    <string name="whoops">Whoops!</string>
-    <string name="you_dont_have_any_favourite_users_yet">Kamu masih belum punya user favorit nih.</string>
-    <string name="add_some_to_this_list_by_clicking_the_fav_button">Tambahkan user favoritmu dengan menekan tombol Fav!</string>
-    <string name="empty_text">Tidak Ada Favorit</string>
-    <string name="change_language">Ubah Bahasa</string>
-</resources>

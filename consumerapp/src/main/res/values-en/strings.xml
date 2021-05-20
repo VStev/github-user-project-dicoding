@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">ConsumerApp</string>
-    <string name="you_dont_have_any_favourite_users_yet">You dont have any favourite users, yet</string>
-    <string name="add_some_to_this_list_by_clicking_the_fav_button">Add some to this list by clicking the Fav button!</string>
-    <string name="whoops">Whoops!</string>
-    <string name="empty_text">No Favourites</string>
-    <string name="change_language">Change Language</string>
-</resources>
