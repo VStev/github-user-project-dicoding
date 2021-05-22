@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity
-data class SimpleUserData(
+data class SimpleUserDataEntity(
     @PrimaryKey
     @SerializedName("login")
     var username : String,

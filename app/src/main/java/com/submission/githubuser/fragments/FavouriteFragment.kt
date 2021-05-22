@@ -8,7 +8,6 @@ import android.provider.Settings
 import android.view.*
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.submission.githubuser.R
@@ -17,13 +16,14 @@ import com.submission.githubuser.activities.UserDetailActivity
 import com.submission.githubuser.databinding.FragmentFavouriteBinding
 import com.submission.githubuser.user.CardViewUserAdapter
 import com.submission.githubuser.viewmodelproviders.FavouritesViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavouriteFragment : Fragment() {
 
     private lateinit var recycleView: RecyclerView
     private var binding: FragmentFavouriteBinding? = null
     private val viewBind get() = binding
-    private lateinit var favouritesViewModel: FavouritesViewModel
+    private val favouritesViewModel: FavouritesViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
@@ -39,7 +39,6 @@ class FavouriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recycleView = view.findViewById(R.id.user_list)
-        favouritesViewModel = ViewModelProvider(this).get(FavouritesViewModel::class.java)
         showLoading(true)
         showLayout()
     }
@@ -77,7 +76,7 @@ class FavouriteFragment : Fragment() {
         val dataAdapter = CardViewUserAdapter()
         recycleView.layoutManager = LinearLayoutManager(activity)
         recycleView.adapter = dataAdapter
-        favouritesViewModel.getfav(context, null).observe(viewLifecycleOwner, { SimpleUserData ->
+        favouritesViewModel.getAllFav().observe(viewLifecycleOwner, { SimpleUserData ->
             if (SimpleUserData != null && SimpleUserData.isNotEmpty()){
                 dataAdapter.setData(SimpleUserData)
                 showLoading(false)

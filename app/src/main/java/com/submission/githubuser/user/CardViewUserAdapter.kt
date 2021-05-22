@@ -11,10 +11,10 @@ import com.submission.githubuser.databinding.CardviewUsersBinding
 
 class CardViewUserAdapter : RecyclerView.Adapter<CardViewUserAdapter.UserDataHolder>() {
 
-    private val mData = ArrayList<SimpleUserData>()
+    private val mData = ArrayList<SimpleUserDataEntity>()
     private lateinit var onItemClickCallback: OnItemClickCallback
 
-    fun setData(items: List<SimpleUserData>) {
+    fun setData(items: List<SimpleUserDataEntity>) {
         mData.clear()
         mData.addAll(items)
         notifyDataSetChanged()
@@ -22,7 +22,7 @@ class CardViewUserAdapter : RecyclerView.Adapter<CardViewUserAdapter.UserDataHol
 
     inner class UserDataHolder(items: View) : RecyclerView.ViewHolder(items) {
         private val binding = CardviewUsersBinding.bind(itemView)
-        fun bind(userData: SimpleUserData) {
+        fun bind(userData: SimpleUserDataEntity) {
             Glide.with(binding.root)
                 .load(userData.avatarUrl)
                 .apply(RequestOptions().override(250, 250))

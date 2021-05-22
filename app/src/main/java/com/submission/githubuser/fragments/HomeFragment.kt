@@ -8,7 +8,6 @@ import android.provider.Settings
 import android.view.*
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.submission.githubuser.R
@@ -17,12 +16,14 @@ import com.submission.githubuser.activities.UserDetailActivity
 import com.submission.githubuser.databinding.FragmentHomeBinding
 import com.submission.githubuser.user.CardViewUserAdapter
 import com.submission.githubuser.viewmodelproviders.MainViewModel
+import com.submission.githubuser.webapi.ApiResponse
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
     private var binding: FragmentHomeBinding? = null
     private val viewBind get() = binding!!
     private lateinit var recycleView: RecyclerView
-    private lateinit var mainViewModel: MainViewModel
+    private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
@@ -37,10 +38,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recycleView = view.findViewById(R.id.user_list)
-        mainViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(MainViewModel::class.java)
         showLoading(true)
         showLayout()
     }
@@ -76,14 +73,22 @@ class HomeFragment : Fragment() {
 
     private fun showLayout() {
         val dataAdapter = CardViewUserAdapter()
-        mainViewModel.fetchUser()
-        mainViewModel.getUsers().observe(viewLifecycleOwner, { SimpleUserData ->
-            if (SimpleUserData != null) {
-                dataAdapter.setData(SimpleUserData)
-                showLoading(false)
-            }else{
-                viewBind.constraintLayout.visibility = View.VISIBLE
-                showLoading(false)
+        mainViewModel.getUsers().observe(viewLifecycleOwner, { response ->
+            if (response != null) {
+                when (response){
+                    is ApiResponse.Success -> {
+                        dataAdapter.setData(response.data)
+                        showLoading(false)
+                    }
+                    is ApiResponse.Empty -> {
+                        viewBind.constraintLayout.visibility = View.VISIBLE
+                        showLoading(false)
+                    }
+                    is ApiResponse.Error -> {
+                        viewBind.constraintLayout.visibility = View.VISIBLE
+                        showLoading(false)
+                    }
+                }
             }
         })
         recycleView.layoutManager = LinearLayoutManager(view?.context)

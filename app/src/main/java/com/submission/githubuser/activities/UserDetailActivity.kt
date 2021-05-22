@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
@@ -14,6 +13,8 @@ import com.submission.githubuser.databinding.ActivityUserDetailBinding
 import com.submission.githubuser.fragments.SectionsPageAdapter
 import com.submission.githubuser.viewmodelproviders.FavouritesViewModel
 import com.submission.githubuser.viewmodelproviders.UserDetailViewModel
+import com.submission.githubuser.webapi.ApiResponse
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -21,8 +22,8 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var userID: String
     private lateinit var avatarURL: String
     private var favStatus: Boolean = false
-    private lateinit var userDetailViewModel: UserDetailViewModel
-    private lateinit var favouritesViewModel : FavouritesViewModel
+    private val userDetailViewModel: UserDetailViewModel by viewModel()
+    private val favouritesViewModel : FavouritesViewModel by viewModel()
 
     companion object {
         const val EXTRA_USER = "extra user"
@@ -39,11 +40,6 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
         viewBind = ActivityUserDetailBinding.inflate(layoutInflater)
         setContentView(viewBind.root)
         supportActionBar?.elevation = 0f
-        userDetailViewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(UserDetailViewModel::class.java)
-        favouritesViewModel = ViewModelProvider(this).get(FavouritesViewModel::class.java)
         showLoading(true)
         showLayout()
     }
@@ -57,43 +53,58 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
         var follower: String
         var following: String
         supportActionBar?.title = userID
-        userDetailViewModel.fetchData(userID)
-        userDetailViewModel.getDetail().observe(this, { UserData ->
-            if (UserData != null) {
-                val text = "Public Repo : ${UserData.repositoryCount}"
-                avatarURL = UserData.avatarUrl.toString()
-                Glide.with(this)
-                    .load(UserData.avatarUrl)
-                    .into(viewBind.circleImageView)
-                viewBind.name.text = UserData.name
-                if (UserData.company != null) viewBind.company.text =
-                    UserData.company else viewBind.company.text = getString(R.string.no_company)
-                if (UserData.location != null) viewBind.location.text =
-                    UserData.location else viewBind.location.text = getString(R.string.no_location)
-                viewBind.repository.text = text
-                follower = UserData.followersCount.toString()
-                following = UserData.followingCount.toString()
-                viewBind.button.setOnClickListener (this)
-                showLoading(false)
-                TabLayoutMediator(tabs, viewPager) { tab, position ->
-                    val tabTitle =
-                        if (position == 0) "${resources.getString(TAB_TITLES[position])} ($follower)" else "${
-                            resources.getString(TAB_TITLES[position])
-                        } ($following)"
-                    tab.text = tabTitle
-                }.attach()
-            }else{
-                Glide.with(this)
-                    .load(R.drawable.crop)
-                    .into(viewBind.circleImageView)
-                viewBind.name.text = getString(R.string.something_is_wrong)
-                viewBind.company.text = getString(R.string.wrong_detail)
-                viewBind.location.text = getString(R.string.try_again)
-                viewBind.button.visibility = View.GONE
-                showLoading(false)
+        userDetailViewModel.getDetail(userID).observe(this, { response ->
+            if (response != null) {
+                when (response){
+                    is ApiResponse.Success -> {
+                        val data = response.data
+                        val text = "Public Repo : ${data.repositoryCount}"
+                        avatarURL = data.avatarUrl.toString()
+                        Glide.with(this)
+                            .load(data.avatarUrl)
+                            .into(viewBind.circleImageView)
+                        viewBind.name.text = data.name
+                        if (data.company != null) viewBind.company.text =
+                            data.company else viewBind.company.text = getString(R.string.no_company)
+                        if (data.location != null) viewBind.location.text =
+                            data.location else viewBind.location.text = getString(R.string.no_location)
+                        viewBind.repository.text = text
+                        follower = data.followersCount.toString()
+                        following = data.followingCount.toString()
+                        viewBind.button.setOnClickListener (this)
+                        showLoading(false)
+                        TabLayoutMediator(tabs, viewPager) { tab, position ->
+                            val tabTitle =
+                                if (position == 0) "${resources.getString(TAB_TITLES[position])} ($follower)" else "${
+                                    resources.getString(TAB_TITLES[position])
+                                } ($following)"
+                            tab.text = tabTitle
+                        }.attach()
+                    }
+                    is ApiResponse.Empty -> {
+                        Glide.with(this)
+                            .load(R.drawable.crop)
+                            .into(viewBind.circleImageView)
+                        viewBind.name.text = getString(R.string.something_is_wrong)
+                        viewBind.company.text = getString(R.string.wrong_detail)
+                        viewBind.location.text = getString(R.string.try_again)
+                        viewBind.button.visibility = View.GONE
+                        showLoading(false)
+                    }
+                    is ApiResponse.Error -> {
+                        Glide.with(this)
+                            .load(R.drawable.crop)
+                            .into(viewBind.circleImageView)
+                        viewBind.name.text = getString(R.string.something_is_wrong)
+                        viewBind.company.text = getString(R.string.wrong_detail)
+                        viewBind.location.text = getString(R.string.try_again)
+                        viewBind.button.visibility = View.GONE
+                        showLoading(false)
+                    }
+                }
             }
         })
-        favouritesViewModel.getfav(this, userID).observe(this, { SimpleUserData ->
+        favouritesViewModel.getFav(userID).observe(this, { SimpleUserData ->
             if (SimpleUserData.isNotEmpty()) {
                 viewBind.button.text = resources.getString(R.string.remove_fav)
                 favStatus = true
@@ -116,12 +127,12 @@ class UserDetailActivity : AppCompatActivity(), View.OnClickListener {
         if (v != null) {
             when (favStatus){
                 false -> {
-                    favouritesViewModel.insertToFavorite(this, userID, avatarURL)
+                    favouritesViewModel.insertToFavorite(userID, avatarURL)
                     viewBind.button.text = resources.getString(R.string.remove_fav)
                     favStatus = true
                 }
                 true -> {
-                    favouritesViewModel.deleteFromFavourites(this, userID)
+                    favouritesViewModel.deleteFromFavourites(userID)
                     viewBind.button.text = resources.getString(R.string.add_fav)
                     favStatus = false
                 }

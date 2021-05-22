@@ -2,7 +2,7 @@ package com.submission.githubuser.user
 
 import com.google.gson.annotations.SerializedName
 
-data class UserData (
+data class UserDataEntity (
     @SerializedName ("login")
     var username: String? = "",
     @SerializedName("name")

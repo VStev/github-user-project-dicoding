@@ -4,13 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.submission.githubuser.R
 import com.submission.githubuser.databinding.ActivitySearchResultBinding
 import com.submission.githubuser.user.CardViewUserAdapter
 import com.submission.githubuser.viewmodelproviders.MainViewModel
+import com.submission.githubuser.webapi.ApiResponse
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchResultActivity : AppCompatActivity() {
 
@@ -20,14 +21,13 @@ class SearchResultActivity : AppCompatActivity() {
 
     private lateinit var viewBind: ActivitySearchResultBinding
     private lateinit var recycleView: RecyclerView
-    private lateinit var mainViewModel: MainViewModel
+    private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBind = ActivitySearchResultBinding.inflate(layoutInflater)
         setContentView(viewBind.root)
         recycleView = viewBind.userList
-        mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
         supportActionBar?.title = getString(R.string.search_result)
         showLoading(true)
         showLayout()
@@ -36,15 +36,24 @@ class SearchResultActivity : AppCompatActivity() {
     private fun showLayout() {
         val userID = intent.getStringExtra(EXTRA_QUERY).toString()
         val dataAdapter = CardViewUserAdapter()
-        mainViewModel.fetchUserSearches(userID)
-        mainViewModel.getSearchResults().observe(this, { SimpleUserData ->
-            if (SimpleUserData != null && SimpleUserData.isNotEmpty()){
-                dataAdapter.setData(SimpleUserData)
-                showLoading(false)
-            }else{
-                viewBind.userList.visibility = View.GONE
-                viewBind.constraintLayout.visibility = View.VISIBLE
-                showLoading(false)
+        mainViewModel.getSearchResults(userID).observe(this, { response ->
+            if (response != null){
+                when (response){
+                    is ApiResponse.Success -> {
+                        response.data.items?.let { dataAdapter.setData(it) }
+                        showLoading(false)
+                    }
+                    is ApiResponse.Empty -> {
+                        viewBind.userList.visibility = View.GONE
+                        viewBind.constraintLayout.visibility = View.VISIBLE
+                        showLoading(false)
+                    }
+                    is ApiResponse.Error -> {
+                        viewBind.userList.visibility = View.GONE
+                        viewBind.constraintLayout.visibility = View.VISIBLE
+                        showLoading(false)
+                    }
+                }
             }
         })
         recycleView.layoutManager = LinearLayoutManager(this)

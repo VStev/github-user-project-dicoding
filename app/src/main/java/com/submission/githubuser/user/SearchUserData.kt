@@ -6,5 +6,5 @@ data class SearchUserData(
     @SerializedName("total_count")
     var count : String? = "",
     @SerializedName("items")
-    var items: ArrayList<SimpleUserData>? = null
+    var items: ArrayList<SimpleUserDataEntity>? = null
 )
